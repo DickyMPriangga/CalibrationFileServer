@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Upload</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Calibration File</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item ">
+                  <a class="nav-link" href="/upload">Upload File</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        <div class="container">
+            <div class="page-header">
+                <h1>Upload file</h1>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form role="form" action="/uploader" enctype="multipart/form-data" method="POST">
+                        <input type="hidden" name="name" value="{{.UserData.name}}" />
+                        <div class="form-group">
+                            <label for="docFile">Select File</label>
+                            <input type="file" name="file"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="expireData">Expiration Date:</label>
+                            <input type="date" id="expire" name="expire">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
