@@ -8,18 +8,17 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
-	"github.com/joho/godotenv"
 	"github.com/stretchr/gomniauth"
 	"github.com/stretchr/gomniauth/providers/google"
 	"github.com/stretchr/signature"
 )
 
 func main() {
-	err := godotenv.Load("env/auth.env")
+	//err := godotenv.Load("dev.env")
 
-	if err != nil {
-		log.Fatal("Error loading rdsDB.env file", err)
-	}
+	//if err != nil {
+	//	log.Fatal("Error loading rdsDB.env file", err)
+	//}
 
 	router := mux.NewRouter().StrictSlash(true)
 	googleClient := os.Getenv("GOOGLE_CLIENT_ID")
@@ -28,7 +27,7 @@ func main() {
 	gomniauth.SetSecurityKey(signature.RandomKey(64))
 	gomniauth.WithProviders(
 		google.New(googleClient, googleSecret,
-			"http://localhost:8080/auth/callback/google"),
+			"https://calibration-file.dickymp.com/auth/callback/google"),
 	)
 
 	router.Handle("/login", handlers.TemplateHandler("login.html"))

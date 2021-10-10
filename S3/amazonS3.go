@@ -9,7 +9,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
-	"github.com/joho/godotenv"
 )
 
 var sessionAWS *session.Session
@@ -17,10 +16,10 @@ var bucketName string
 var awsRegion string
 
 func init() {
-	err := godotenv.Load("env/awsS3.env")
-	if err != nil {
-		log.Fatal("Error loading awsS3.env file", err)
-	}
+	//err := godotenv.Load("dev.env")
+	//if err != nil {
+	//	log.Fatal("Error loading awsS3.env file", err)
+	//}
 
 	sessionAWS = connectAWS()
 }

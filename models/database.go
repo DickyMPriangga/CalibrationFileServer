@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -13,14 +12,18 @@ import (
 var db *gorm.DB
 
 func init() {
-	err := godotenv.Load("env/rdsDB.env")
+	//err := godotenv.Load("dev.env")
 
-	if err != nil {
-		log.Fatal("Error loading rdsDB.env file", err)
-	}
+	//if err != nil {
+	//	log.Fatal("Error loading rdsDB.env file", err)
+	//}
+
+	var err error
 
 	postgreSQLInfo := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Shanghai",
 		os.Getenv("DB_HOST"), os.Getenv("DB_USERNAME"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_NAME"), os.Getenv("DB_PORT"))
+
+	//postgreSQLInfo := "host=database-file-server.cfvrwyehu9g1.ap-southeast-1.rds.amazonaws.com user=dickymp password=8jC9emPuLJqdFG6 dbname=postgres port=5432 sslmode=disable TimeZone=Asia/Shanghai"
 
 	db, err = gorm.Open(postgres.Open(postgreSQLInfo), &gorm.Config{})
 
